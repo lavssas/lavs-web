@@ -37,6 +37,15 @@
     padding: 0 24px;
   }
 
+  /* LANGUAGE TOGGLE */
+  .t-en { display: none; }
+  html.lang-en .t-es { display: none; }
+  html.lang-en .t-en { display: inline; }
+
+  .lang-toggle {
+    padding: 8px 14px !important; font-size: 12.5px !important; font-weight: 700 !important;
+  }
+
   /* NAV */
   nav.topnav {
     position: sticky;
@@ -53,6 +62,7 @@
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
+    gap: 12px;
   }
 
   .brand { display: flex; align-items: center; gap: 10px; }
@@ -62,6 +72,8 @@
     display: flex; align-items: center;
   }
   .brand-logo-chip img { display: block; height: 30px; width: auto; }
+
+  .nav-right { display: flex; align-items: center; gap: 14px; }
 
   .nav-links { display: flex; gap: 22px; align-items: center; }
   .nav-links a {
@@ -91,11 +103,26 @@
   .hero h1 {
     font-size: clamp(32px, 6vw, 54px); font-weight: 800; margin: 0 0 18px 0; letter-spacing: -0.5px;
   }
-  .hero h1 span { color: var(--accent); }
+  .hero h1 .accent-word { color: var(--accent); }
   .hero p.lead {
     color: var(--text-dim); font-size: 17px; max-width: 580px; margin: 0 auto 34px auto;
   }
   .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* TAGLINE BANNER */
+  .tagline-banner {
+    padding: 40px 0; text-align: center; background: var(--bg-elevated);
+    border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);
+  }
+  .tagline-banner .tagline-eyebrow {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+  .tagline-banner p {
+    font-size: clamp(17px, 2.6vw, 23px); font-style: italic; font-weight: 500;
+    max-width: 720px; margin: 0 auto; color: var(--text); line-height: 1.45;
+  }
+  .tagline-banner .horse { font-size: 26px; display: block; margin-bottom: 10px; }
 
   /* SECTION HEADERS */
   .section { padding: 64px 0; border-top: 1px solid var(--card-border); }
@@ -140,7 +167,7 @@
   .feature-card p { color: var(--text-dim); font-size: 13.5px; margin: 0; }
   .featured-badge {
     display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px;
-    text-transform: uppercase; color: #06110C; background: var(--accent); color: #fff;
+    text-transform: uppercase; color: #fff; background: var(--accent);
     padding: 3px 9px; border-radius: 999px; margin-bottom: 10px;
   }
   .robot-bubble {
@@ -160,6 +187,15 @@
   .why-item h3 { font-size: 16px; margin: 0 0 6px 0; }
   .why-item p { color: var(--text-dim); font-size: 13.5px; margin: 0; }
 
+  .why-closing {
+    margin-top: 40px; padding: 28px 30px; background: var(--card); border: 1px solid var(--accent-dim);
+    border-radius: 16px; text-align: center;
+  }
+  .why-closing p {
+    font-size: clamp(18px, 3vw, 24px); font-weight: 700; margin: 0; color: var(--text);
+  }
+  .why-closing p .accent-word { color: var(--accent); }
+
   /* LOCATION */
   .location-card {
     background: var(--card); border: 1px solid var(--card-border); border-radius: 16px;
@@ -172,26 +208,20 @@
   .location-item a { color: var(--text); text-decoration: none; }
   .location-item a:hover { color: var(--accent); }
 
+  .map-wrap {
+    margin-top: 20px; border-radius: 16px; overflow: hidden; border: 1px solid var(--card-border);
+  }
+  .map-wrap iframe { display: block; width: 100%; height: 320px; border: 0; }
+
   /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 36px; align-items: start; }
-  .contact-info-item { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .contact-center { max-width: 480px; margin: 36px auto 0 auto; text-align: center; }
+  .contact-info-item {
+    display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 18px;
+  }
   .contact-info-item .ico { font-size: 20px; }
   .contact-info-item a, .contact-info-item span { color: var(--text); text-decoration: none; font-size: 14.5px; }
   .contact-info-item a:hover { color: var(--accent); }
-
-  form.contact-form { display: flex; flex-direction: column; gap: 12px; }
-  form.contact-form input, form.contact-form textarea {
-    background: var(--card); border: 1px solid var(--card-border); border-radius: 10px;
-    padding: 12px 14px; color: var(--text); font-family: inherit; font-size: 13.5px;
-  }
-  form.contact-form input:focus, form.contact-form textarea:focus { outline: none; border-color: var(--accent); }
-  form.contact-form textarea { min-height: 100px; resize: vertical; }
-  form.contact-form .hidden { position: absolute; left: -5000px; }
-  form.contact-form button { align-self: flex-start; margin-top: 4px; }
-
-  @media (max-width: 640px) {
-    .contact-grid { grid-template-columns: 1fr; }
-  }
+  .contact-hint { color: var(--text-dim); font-size: 12.5px; margin: 14px 0 0 0; }
 
   /* CTA FINAL */
   .cta-final {
@@ -209,6 +239,7 @@
     .nav-links { display: none; }
     .hero { padding: 56px 0 40px 0; }
     .team-card { flex-direction: column; align-items: center; text-align: center; }
+    .location-card { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -221,46 +252,84 @@
           <img src="logo-wordmark.png" alt="LAVS Asesoría Integral" />
         </div>
       </div>
-      <div class="nav-links">
-        <a href="#quienes-somos">Quiénes somos</a>
-        <a href="#funciones">Funciones</a>
-        <a href="#por-que">Por qué LAVS</a>
-        <a href="#contacto" class="btn btn-primary">Contactar</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#quienes-somos"><span class="t-es">Quiénes somos</span><span class="t-en">About us</span></a>
+          <a href="#funciones"><span class="t-es">Funciones</span><span class="t-en">Services</span></a>
+          <a href="#por-que"><span class="t-es">Por qué LAVS</span><span class="t-en">Why LAVS</span></a>
+          <a href="#contacto" class="btn btn-primary"><span class="t-es">Contactar</span><span class="t-en">Contact</span></a>
+        </div>
+        <button id="langToggle" class="btn btn-ghost lang-toggle" onclick="toggleLang()" type="button">EN</button>
       </div>
     </div>
   </nav>
 
   <header class="hero wrap">
     <img class="hero-logo" src="logo-wordmark.png" alt="LAVS Asesoría Integral" />
-    <span class="eyebrow">Asesoría integral para PyMEs</span>
-    <h1>Poné en piloto autom&aacute;tico<br />la administraci&oacute;n de tu <span>PyME</span></h1>
-    <p class="lead">LAVS conecta tus bancos, facturas y env&iacute;os en un solo lugar, y te avisa antes de que algo se convierta en un problema — sin planillas sueltas ni WhatsApp perdido.</p>
+    <span class="eyebrow">
+      <span class="t-es">Asesoría integral para PyMEs</span>
+      <span class="t-en">Integral advisory for SMEs</span>
+    </span>
+    <h1>
+      <span class="t-es">Poné en piloto autom&aacute;tico<br />la administraci&oacute;n de tu <span class="accent-word">PyME</span></span>
+      <span class="t-en">Put your <span class="accent-word">SME</span>&rsquo;s administration<br />on autopilot</span>
+    </h1>
+    <p class="lead">
+      <span class="t-es">LAVS conecta tus bancos, facturas y env&iacute;os en un solo lugar, y te avisa antes de que algo se convierta en un problema — sin planillas sueltas ni WhatsApp perdido.</span>
+      <span class="t-en">LAVS connects your banks, invoices and shipments in one place, and warns you before something becomes a problem — no loose spreadsheets, no lost WhatsApp messages.</span>
+    </p>
     <div class="hero-ctas">
-      <a href="#contacto" class="btn btn-primary">Quiero probarlo</a>
-      <a href="#funciones" class="btn btn-ghost">Ver qué hace</a>
+      <a href="#contacto" class="btn btn-primary"><span class="t-es">Quiero probarlo</span><span class="t-en">I want to try it</span></a>
+      <a href="#funciones" class="btn btn-ghost"><span class="t-es">Ver qué hace</span><span class="t-en">See what it does</span></a>
     </div>
   </header>
 
+  <section class="tagline-banner">
+    <div class="wrap">
+      <span class="horse">🐴</span>
+      <div class="tagline-eyebrow">
+        <span class="t-es">PyME Argentina</span>
+        <span class="t-en">Argentine SME</span>
+      </div>
+      <p>
+        <span class="t-es">El caballo que nunca deja de tirar: estamos hechos para galopar incluso contra el viento.</span>
+        <span class="t-en">The horse that never stops pulling: we're built to gallop even against the wind.</span>
+      </p>
+    </div>
+  </section>
+
   <section class="section" id="quienes-somos">
     <div class="wrap">
-      <div class="section-eyebrow">Quiénes somos</div>
-      <h2>Profesionales fueguinos, del otro lado de tu administraci&oacute;n</h2>
-      <p class="section-lead">Somos un equipo fueguino dedicado a profesionalizar PyMEs y automatizar procesos. Somos expertos en el armado de estados de resultados, an&aacute;lisis de costos y mejoras operativas — combinando una s&oacute;lida formaci&oacute;n en Contadur&iacute;a P&uacute;blica y Econom&iacute;a con la aplicaci&oacute;n de agentes de Inteligencia Artificial, para llevar la administraci&oacute;n de tu negocio a otro nivel.</p>
+      <div class="section-eyebrow"><span class="t-es">Quiénes somos</span><span class="t-en">Who we are</span></div>
+      <h2>
+        <span class="t-es">Profesionales fueguinos, del otro lado de tu administraci&oacute;n</span>
+        <span class="t-en">Professionals from Tierra del Fuego, right behind your administration</span>
+      </h2>
+      <p class="section-lead">
+        <span class="t-es">Somos un equipo fueguino dedicado a profesionalizar PyMEs y automatizar procesos. Somos expertos en el armado de estados de resultados, an&aacute;lisis de costos y mejoras operativas — combinando una s&oacute;lida formaci&oacute;n en Contadur&iacute;a P&uacute;blica y Econom&iacute;a con la aplicaci&oacute;n de agentes de Inteligencia Artificial, para llevar la administraci&oacute;n de tu negocio a otro nivel.</span>
+        <span class="t-en">We're a team from Tierra del Fuego dedicated to professionalizing SMEs and automating processes. We're experts in building income statements, cost analysis and operational improvements — combining a solid background in Public Accounting and Economics with the application of AI agents, to take your business administration to the next level.</span>
+      </p>
       <div class="team-grid">
         <div class="team-card">
           <img class="team-photo" src="ana-laura-vera.jpg" alt="Ana Laura Vera" />
           <div>
             <h3>Ana Laura Vera</h3>
-            <div class="team-role">Manager</div>
-            <p class="bio">Licenciada en Econom&iacute;a, con maestr&iacute;a en Recursos Humanos. Amplia trayectoria en el sector p&uacute;blico y privado.</p>
+            <div class="team-role"><span class="t-es">Manager General</span><span class="t-en">General Manager</span></div>
+            <p class="bio">
+              <span class="t-es">Licenciada en Econom&iacute;a, con maestr&iacute;a en Recursos Humanos. Amplia trayectoria en el sector p&uacute;blico y privado.</span>
+              <span class="t-en">Economist, with a master's degree in Human Resources. Extensive experience in both the public and private sectors.</span>
+            </p>
           </div>
         </div>
         <div class="team-card">
           <img class="team-photo" src="lucas-alberto-silva.jpg" alt="Lucas Alberto Silva" />
           <div>
             <h3>Lucas Alberto Silva</h3>
-            <div class="team-role">Contador Público</div>
-            <p class="bio">S&oacute;lidos conocimientos en estudios contables y gesti&oacute;n financiera para PyMEs.</p>
+            <div class="team-role"><span class="t-es">Manager Contable</span><span class="t-en">Accounting Manager</span></div>
+            <p class="bio">
+              <span class="t-es">Contador P&uacute;blico, con s&oacute;lidos conocimientos en estudios contables y gesti&oacute;n financiera para PyMEs.</span>
+              <span class="t-en">Certified Public Accountant, with strong expertise in accounting practices and financial management for SMEs.</span>
+            </p>
           </div>
         </div>
       </div>
@@ -269,34 +338,49 @@
 
   <section class="section" id="funciones">
     <div class="wrap">
-      <div class="section-eyebrow">Qué hacemos</div>
-      <h2>Cuatro frentes, un solo equipo</h2>
-      <p class="section-lead">Cada &aacute;rea funciona sola o combinada, seg&uacute;n lo que tu negocio necesite hoy.</p>
+      <div class="section-eyebrow"><span class="t-es">Qué hacemos</span><span class="t-en">What we do</span></div>
+      <h2><span class="t-es">Cuatro frentes, un solo equipo</span><span class="t-en">Four fronts, one team</span></h2>
+      <p class="section-lead">
+        <span class="t-es">Cada &aacute;rea funciona sola o combinada, seg&uacute;n lo que tu negocio necesite hoy.</span>
+        <span class="t-en">Each area works on its own or combined, depending on what your business needs today.</span>
+      </p>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🗂️</div>
-          <h3>Administraci&oacute;n</h3>
-          <p>Orden y profesionalizaci&oacute;n de procesos administrativos, de punta a punta.</p>
+          <h3><span class="t-es">Administraci&oacute;n</span><span class="t-en">Administration</span></h3>
+          <p>
+            <span class="t-es">Orden y profesionalizaci&oacute;n de procesos administrativos, de punta a punta.</span>
+            <span class="t-en">Order and professionalization of administrative processes, end to end.</span>
+          </p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">💰</div>
-          <h3>Finanzas</h3>
-          <p>Evaluamos rentabilidad, costos, flujos de fondos y controles internos.</p>
+          <h3><span class="t-es">Finanzas</span><span class="t-en">Finance</span></h3>
+          <p>
+            <span class="t-es">Evaluamos rentabilidad, costos, flujos de fondos y controles internos.</span>
+            <span class="t-en">We assess profitability, costs, cash flows and internal controls.</span>
+          </p>
         </div>
         <div class="feature-card featured">
-          <span class="featured-badge">★ Nuestro fuerte</span>
+          <span class="featured-badge">★ <span class="t-es">Nuestro fuerte</span><span class="t-en">Our strength</span></span>
           <div class="feature-icon">🤖</div>
-          <h3>IA y Automatizaci&oacute;n</h3>
-          <p>La estrella de nuestra cartera de servicios: procesos que antes te llevaban horas, ahora se resuelven solos.</p>
+          <h3><span class="t-es">IA y Automatizaci&oacute;n</span><span class="t-en">AI &amp; Automation</span></h3>
+          <p>
+            <span class="t-es">La estrella de nuestra cartera de servicios: procesos que antes te llevaban horas, ahora se resuelven solos.</span>
+            <span class="t-en">The star of our service portfolio: processes that used to take hours now solve themselves.</span>
+          </p>
           <div class="robot-bubble">
             <span class="emoji">🤖</span>
-            <span>¡Buenas! Estoy acá para ayudarte.</span>
+            <span><span class="t-es">¡Buenas! Estoy acá para ayudarte.</span><span class="t-en">Hi there! I'm here to help.</span></span>
           </div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📊</div>
-          <h3>Gesti&oacute;n</h3>
-          <p>Indicadores, an&aacute;lisis y acompa&ntilde;amiento para la toma de decisiones.</p>
+          <h3><span class="t-es">Gesti&oacute;n</span><span class="t-en">Management</span></h3>
+          <p>
+            <span class="t-es">Indicadores, an&aacute;lisis y acompa&ntilde;amiento para la toma de decisiones.</span>
+            <span class="t-en">Metrics, analysis and support for decision-making.</span>
+          </p>
         </div>
       </div>
     </div>
@@ -304,52 +388,68 @@
 
   <section class="section" id="por-que">
     <div class="wrap">
-      <div class="section-eyebrow">Por qué LAVS</div>
-      <h2>Pensado para quien no tiene tiempo de perder</h2>
+      <div class="section-eyebrow"><span class="t-es">Por qué LAVS</span><span class="t-en">Why LAVS</span></div>
+      <h2><span class="t-es">Pensado para quien no tiene tiempo de perder</span><span class="t-en">Built for those who have no time to lose</span></h2>
       <div class="why-grid">
         <div class="why-item">
           <div class="why-number">01</div>
-          <h3>Menos tareas manuales</h3>
-          <p>Automatizamos lo repetitivo para que tu tiempo rinda donde importa.</p>
+          <h3><span class="t-es">Menos tareas manuales</span><span class="t-en">Fewer manual tasks</span></h3>
+          <p>
+            <span class="t-es">Automatizamos lo repetitivo para que tu tiempo rinda donde importa.</span>
+            <span class="t-en">We automate the repetitive so your time counts where it matters.</span>
+          </p>
         </div>
         <div class="why-item">
           <div class="why-number">02</div>
-          <h3>M&aacute;s control</h3>
-          <p>Visibilidad clara de cada proceso administrativo y financiero.</p>
+          <h3><span class="t-es">M&aacute;s control</span><span class="t-en">More control</span></h3>
+          <p>
+            <span class="t-es">Visibilidad clara de cada proceso administrativo y financiero.</span>
+            <span class="t-en">Clear visibility of every administrative and financial process.</span>
+          </p>
         </div>
         <div class="why-item">
           <div class="why-number">03</div>
-          <h3>Mejores decisiones</h3>
-          <p>Informaci&oacute;n ordenada y a tiempo para decidir con criterio.</p>
+          <h3><span class="t-es">Mejores decisiones</span><span class="t-en">Better decisions</span></h3>
+          <p>
+            <span class="t-es">Informaci&oacute;n ordenada y a tiempo para decidir con criterio.</span>
+            <span class="t-en">Organized, timely information to decide with confidence.</span>
+          </p>
         </div>
         <div class="why-item">
           <div class="why-number">04</div>
-          <h3>M&aacute;s rentabilidad</h3>
-          <p>Identificamos d&oacute;nde est&aacute;s perdiendo plata y c&oacute;mo recuperarla.</p>
+          <h3><span class="t-es">M&aacute;s rentabilidad</span><span class="t-en">More profitability</span></h3>
+          <p>
+            <span class="t-es">Identificamos d&oacute;nde est&aacute;s perdiendo plata y c&oacute;mo recuperarla.</span>
+            <span class="t-en">We identify where you're losing money and how to recover it.</span>
+          </p>
         </div>
         <div class="why-item">
           <div class="why-number">05</div>
-          <h3>Uso inteligente del tiempo</h3>
-          <p>Menos horas en planillas, m&aacute;s horas en hacer crecer el negocio.</p>
+          <h3><span class="t-es">Uso inteligente del tiempo</span><span class="t-en">Smart use of time</span></h3>
+          <p>
+            <span class="t-es">Menos horas en planillas, m&aacute;s horas en hacer crecer el negocio.</span>
+            <span class="t-en">Fewer hours on spreadsheets, more hours growing the business.</span>
+          </p>
         </div>
-        <div class="why-item">
-          <div class="why-number">06</div>
-          <h3>Mejoramos la administraci&oacute;n</h3>
-          <p>Para que tu PyME logre sostenerse en el tiempo.</p>
-        </div>
+      </div>
+      <div class="why-closing">
+        <p>
+          <span class="t-es">Estamos para que tu <span class="accent-word">PyME</span> logre sostenerse en el tiempo.</span>
+          <span class="t-en">We're here so your <span class="accent-word">SME</span> can stand the test of time.</span>
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section" id="ubicacion">
     <div class="wrap">
-      <div class="section-eyebrow">Dónde estamos</div>
+      <div class="section-eyebrow"><span class="t-es">Dónde estamos</span><span class="t-en">Where we are</span></div>
       <h2>Ushuaia, Tierra del Fuego</h2>
       <div class="location-card">
         <div class="location-item">
           <span class="ico">📍</span>
           <div>
-            <div class="label">Dirección</div>
+            <div class="label"><span class="t-es">Dirección</span><span class="t-en">Address</span></div>
             <div class="value">Hip&oacute;lito Yrigoyen 1588, Ushuaia</div>
           </div>
         </div>
@@ -361,42 +461,66 @@
           </div>
         </div>
       </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=Hip%C3%B3lito+Yrigoyen+1588,+Ushuaia,+Tierra+del+Fuego,+Argentina&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación de LAVS en Ushuaia"></iframe>
+      </div>
     </div>
   </section>
 
   <section class="section" id="contacto">
     <div class="wrap">
-      <div class="section-eyebrow">Contacto</div>
-      <h2>&iquest;Quer&eacute;s profesionalizar tu PyME?</h2>
-      <p class="section-lead">Escribinos y lo armamos juntos, a medida de c&oacute;mo trabaj&aacute;s hoy.</p>
-      <div class="contact-grid">
-        <div>
-          <div class="contact-info-item">
-            <span class="ico">📧</span>
-            <a href="mailto:lavs.sas.adm@gmail.com">lavs.sas.adm@gmail.com</a>
-          </div>
-          <div class="contact-info-item">
-            <span class="ico">📱</span>
-            <a href="tel:+542901414161">2901 41-4161</a>
-          </div>
-          <a href="mailto:lavs.sas.adm@gmail.com?subject=Quiero%20probar%20LAVS" class="btn btn-primary">Escribinos por mail</a>
+      <div class="section-eyebrow"><span class="t-es">Contacto</span><span class="t-en">Contact</span></div>
+      <h2><span class="t-es">&iquest;Quer&eacute;s profesionalizar tu PyME?</span><span class="t-en">Want to professionalize your SME?</span></h2>
+      <p class="section-lead">
+        <span class="t-es">Escribinos y lo armamos juntos, a medida de c&oacute;mo trabaj&aacute;s hoy.</span>
+        <span class="t-en">Write to us and we'll build it together, tailored to how you work today.</span>
+      </p>
+      <div class="contact-center">
+        <div class="contact-info-item">
+          <span class="ico">📧</span>
+          <a href="mailto:lavs.sas.adm@gmail.com">lavs.sas.adm@gmail.com</a>
         </div>
-        <form class="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contacto" />
-          <p class="hidden"><label>No completar: <input name="bot-field" /></label></p>
-          <input type="text" name="nombre" placeholder="Tu nombre" required />
-          <input type="email" name="email" placeholder="Tu email" required />
-          <input type="tel" name="telefono" placeholder="Tu teléfono (opcional)" />
-          <textarea name="mensaje" placeholder="Contanos qué necesitás" required></textarea>
-          <button type="submit" class="btn btn-primary">Enviar consulta</button>
-        </form>
+        <div class="contact-info-item">
+          <span class="ico">📱</span>
+          <a href="tel:+542901414161">2901 41-4161</a>
+        </div>
+        <a href="mailto:lavs.sas.adm@gmail.com?subject=Quiero%20probar%20LAVS" class="btn btn-primary">
+          <span class="t-es">Escribinos por mail</span><span class="t-en">Email us</span>
+        </a>
+        <p class="contact-hint">
+          <span class="t-es">Se abre tu aplicación de correo predeterminada (funciona igual en Mac y en Windows).</span>
+          <span class="t-en">This opens your default email app (works the same on Mac and Windows).</span>
+        </p>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="wrap">© 2026 LAVS Asesoría Integral — Ushuaia, Tierra del Fuego.</div>
+    <div class="wrap">
+      <span class="t-es">© 2026 LAVS Asesoría Integral — Ushuaia, Tierra del Fuego.</span>
+      <span class="t-en">© 2026 LAVS Integral Advisory — Ushuaia, Tierra del Fuego.</span>
+    </div>
   </footer>
+
+  <script>
+    function toggleLang() {
+      var html = document.documentElement;
+      var btn = document.getElementById('langToggle');
+      if (html.classList.contains('lang-en')) {
+        html.classList.remove('lang-en');
+        html.lang = 'es';
+        btn.textContent = 'EN';
+      } else {
+        html.classList.add('lang-en');
+        html.lang = 'en';
+        btn.textContent = 'ES';
+      }
+    }
+  </script>
 
 </body>
 </html>
