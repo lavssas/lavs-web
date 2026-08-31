@@ -566,6 +566,10 @@
       100% { transform: translateY(0); }
     }
 
+    #lavs-chat-backdrop {
+      display: none;
+    }
+
     #lavs-chat-panel {
       position: fixed; right: 20px; bottom: 136px; z-index: 1000;
       width: 400px; max-width: calc(100vw - 40px);
@@ -637,20 +641,41 @@
     #lavs-chat-send:disabled { opacity: 0.5; cursor: default; }
 
     @media (max-width: 480px) {
-      #lavs-chat-panel { right: 10px; left: 10px; width: auto; bottom: 128px; height: 60vh; }
-      #lavs-chat-launcher { right: 16px; bottom: 40px; width: 74px; height: 74px; font-size: 32px; }
+      #lavs-chat-backdrop.open {
+        display: block; position: fixed; inset: 0; z-index: 999;
+        background: rgba(4, 7, 11, 0.78);
+        animation: lavs-backdrop-in 0.2s ease;
+      }
+      @keyframes lavs-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 
-      #lavs-chat-header { padding: 12px 12px; gap: 8px; }
-      #lavs-chat-header .title { font-size: 14px; }
-      #lavs-chat-header .subtitle { font-size: 11px; }
+      #lavs-chat-panel {
+        right: 8px; left: 8px; width: auto;
+        bottom: 128px; top: 16px; height: auto; max-height: none;
+      }
+      #lavs-chat-launcher { right: 16px; bottom: 40px; width: 74px; height: 74px; font-size: 32px; }
+      #lavs-chat-launcher.open { z-index: 1001; }
+
+      #lavs-chat-header { padding: 14px 12px; gap: 10px; }
+      #lavs-chat-header .avatar { width: 42px; height: 42px; font-size: 21px; }
+      #lavs-chat-header .title { font-size: 16.5px; }
+      #lavs-chat-header .subtitle { font-size: 13px; }
       #lavs-chat-header-end {
-        padding: 7px; border-radius: 50%;
-        width: 30px; height: 30px; justify-content: center; gap: 0;
+        padding: 8px; border-radius: 50%;
+        width: 34px; height: 34px; justify-content: center; gap: 0;
       }
       #lavs-chat-header-end .end-label { display: none; }
-      #lavs-chat-header-end .x-ico { font-size: 16px; }
+      #lavs-chat-header-end .x-ico { font-size: 18px; }
+
+      #lavs-chat-messages { padding: 18px 14px 22px; gap: 14px; }
+      .lavs-msg { font-size: 16.5px; line-height: 1.55; max-width: 90%; padding: 12px 14px; }
+
+      #lavs-chat-form { padding: 12px; gap: 10px; }
+      #lavs-chat-input { font-size: 16px; padding: 12px 14px; }
+      #lavs-chat-send { width: 44px; height: 44px; font-size: 18px; }
     }
   </style>
+
+  <div id="lavs-chat-backdrop"></div>
 
   <button id="lavs-chat-launcher" aria-label="Abrir chat / Open chat">
     <span class="chat-ico">💬</span>
@@ -684,6 +709,7 @@
 
     var launcher = document.getElementById('lavs-chat-launcher');
     var panel = document.getElementById('lavs-chat-panel');
+    var backdrop = document.getElementById('lavs-chat-backdrop');
     var messagesEl = document.getElementById('lavs-chat-messages');
     var form = document.getElementById('lavs-chat-form');
     var input = document.getElementById('lavs-chat-input');
@@ -736,6 +762,8 @@
     function openPanel() {
       panel.classList.add('open');
       launcher.classList.add('open');
+      if (backdrop) backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
       if (!opened) {
         opened = true;
         addMessage(greeting(), 'bot');
@@ -745,6 +773,8 @@
     function closePanel() {
       panel.classList.remove('open');
       launcher.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.style.overflow = '';
     }
 
     function endSession() {
@@ -761,6 +791,10 @@
 
     if (endBtn) {
       endBtn.addEventListener('click', endSession);
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closePanel);
     }
 
     form.addEventListener('submit', function (e) {
