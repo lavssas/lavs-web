@@ -185,6 +185,14 @@
   }
   .robot-bubble .emoji { font-size: 18px; }
 
+  /* VIDEO */
+  .video-frame {
+    position: relative; max-width: 820px; margin: 0 auto; border-radius: 16px;
+    overflow: hidden; border: 1px solid var(--card-border); background: var(--card);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  }
+  .video-frame video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; background: #000; }
+
   /* WHY */
   .why-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 28px;
@@ -264,6 +272,7 @@
         <div class="nav-links">
           <a href="#quienes-somos"><span class="t-es">Quiénes somos</span><span class="t-en">About us</span></a>
           <a href="#funciones"><span class="t-es">Funciones</span><span class="t-en">Services</span></a>
+          <a href="#video">Video</a>
           <a href="#por-que"><span class="t-es">Por qué LAVS</span><span class="t-en">Why LAVS</span></a>
           <a href="#contacto" class="btn btn-primary"><span class="t-es">Contactar</span><span class="t-en">Contact</span></a>
         </div>
@@ -390,6 +399,22 @@
             <span class="t-en">Metrics, analysis and support for decision-making.</span>
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="video">
+    <div class="wrap">
+      <div class="section-eyebrow"><span class="t-es">Video</span><span class="t-en">Video</span></div>
+      <h2><span class="t-es">Mirá a LAVS en acci&oacute;n</span><span class="t-en">See LAVS in action</span></h2>
+      <p class="section-lead">
+        <span class="t-es">Un recorrido de un minuto por los cuatro frentes en los que trabajamos, con ejemplos reales de lo que resolvemos para PyMEs como la tuya.</span>
+        <span class="t-en">A one-minute walkthrough of the four fronts we work on, with real examples of what we solve for SMEs like yours.</span>
+      </p>
+      <div class="video-frame">
+        <video controls preload="none" poster="lavs-presentacion-poster.jpg" playsinline>
+          <source src="lavs-presentacion.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   </section>
